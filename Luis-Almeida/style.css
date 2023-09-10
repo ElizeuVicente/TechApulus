@@ -1,0 +1,35 @@
+.input_class {
+    color: #B85C38;
+}
+
+.background {
+    background-color: #F2CDAC;
+}
+
+.texto {
+    font-size: 20px;
+    color: #5C3D2E;
+}
+
+.textoTitulo {
+    font-size: 40px;
+    color: #2D2424;
+}
+
+.botao {
+    font-family: monospace;
+    color: red;
+    width: 110px;
+    height: 35px;
+}
+
+.texto_botao {
+    color: #5C3D2E;
+    font-size: 18px;
+}
+
+.valoresFinanceiros {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #0B0F26;
+    font-weight: bolder;
+}
