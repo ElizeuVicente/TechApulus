@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="background">
+    <h1 class="textoTitulo">Simulador Financeiro TechApulus</h1>
+
+    <label class="texto"> Quantas sacas de café são vendidas por mês?
+        <input class="input_class" id="input_sacas_cafe_vendidas" type="number">
+    </label> <br>
+
+    <label class="texto"> Quanto é vendida uma saca de café?
+        <input class="input_class" id="input_sacas_cafe_preco" type="number">
+    </label> <br>
+
+    <label class="texto"> Quanto são os seus gastos por saca de café?
+        <input class="input_class" id="input_sacas_cafe_compra" type="number">
+    </label> <br>
+
+    <label class="texto"> Quantas sacas são guardadas em um armazém?
+        <input class="input_class" id="input_sacas_cafe_armazem" type="number">
+    </label> <br>
+
+    <label class="texto"> Quantos armazéns você possui?
+        <input class="input_class" id="input_num_armazem" type="number">
+    </label> <br>
+
+    <label class="texto">Qual a sua média de renda anual?
+        <input class="input_class" id="input_renda_anual" type="number">
+    </label> <br>
+
+    <button class="botao" onclick="calcInvestimento()">Calcular investimento:</button>
+    <div class="texto_botao" id="div_html" ></div>
+</body>
+
+</html>
+
+<script>
+    function calcInvestimento() {
+        var sacasCafeVendas = Number(input_sacas_cafe_vendidas.value);
+        var sacasCafePreco = Number(input_sacas_cafe_preco.value);
+        var precoCompraCafe = Number (input_sacas_cafe_compra.value);
+        var sacasCafeArmazem = Number(input_sacas_cafe_armazem.value);
+        var numArmazem = Number(input_num_armazem.value);
+        var mediaRendaAnual = Number(input_renda_anual.value);
+        // Variáveis dos inputs
+        var margemLucroMes = sacasCafeVendas * sacasCafePreco - precoCompraCafe; // margem de Lucro no mês
+        var sacasPorAno = margemLucroMes * 12 // 12 meses = 1 ano
+        var perdasGraoMes = margemLucroMes * 0.15  // Há em média 15% de perdas de grãos por umidade e temperatura
+        var qtdSacasTotal = sacasCafeArmazem * numArmazem // Num de sacas total nos armazéns
+        var calcPrejuizo =  sacasCafePreco - precoCompraCafe // Cálculo do prejuízo, diferença entre compra e venda
+        var perdasGraoAnual = mediaRendaAnual * 0.15 // Cálculo das perdas de grãos baseadas na média de renda anual
+       // Contas em relação as sacas
+        
+        div_html.innerHTML = ` Com o nosso projeto você estararia ganhando R$ <b class = "valoresFinanceiros">${margemLucroMes}</b> mensalmente, no entanto devido as perdas por temperatura e umidade, você está deixando de ganhar R$ <b class = "valoresFinanceiros">${perdasGraoMes} </b> <br>
+        Em 6 meses, você está deixando de ganhar: R$ <b class = "valoresFinanceiros">${perdasGraoMes * 6} </b> <br>
+        E em 1 ano suas perdas são de: R$ <b class = "valoresFinanceiros"> ${perdasGraoMes * 12} </b> <br>
+        No total, você possui em média <b class = "valoresFinanceiros"> ${qtdSacasTotal} </b> sacas <br>
+        Você sabia que em média dessas <b class = "valoresFinanceiros"> ${qtdSacasTotal} sacas </b> Você está perdendo <b class = "valoresFinanceiros"> ${qtdSacasTotal * 0.15} </b> delas?
+        Isso resulta em uma perda de R$ <b class = "valoresFinanceiros"> ${qtdSacasTotal * sacasCafePreco} </b> de seu capital deste armazém <br>
+        `
+        if (0 >= calcPrejuizo){
+        div_html.innerHTML += `Baseando-se na sua renda anual, devido ao seu prejuizo de R$ <b class = "valoresFinanceiros"> ${calcPrejuizo * -1} </b> por saca, e por não ter o nosso projeto, isso gera um impacto de R$ <b class = "valoresFinanceiros"> ${(calcPrejuizo - perdasGraoAnual) *-1} </b> anualmente, representando cerca de <b class = "valoresFinanceiros"> ${((calcPrejuizo - perdasGraoAnual) * 100 *-1 / mediaRendaAnual).toFixed(2)}% </b> de seu ano
+        `
+        } else { // A ideia do cálculo é se aproximar dos 15% representando a sua perda por conta de não ter os sensores
+            div_html.innerHTML += `Basendo-se na renda anual, apesar do seu lucro de <b class = "valoresFinanceiros"> ${calcPrejuizo} </b>, sem o nosso projeto você ainda está perdendo cerca de <b class = "valoresFinanceiros"> ${perdasGraoAnual} </b>, representando <b class = "valoresFinanceiros"> ${((calcPrejuizo + perdasGraoAnual) * 100 / mediaRendaAnual).toFixed(2)}% </b> de seu ano`
+        } // A ideia do cálculo é chegar o mais próximo dos 15% representando a sua perda por conta de não ter os sensores
+    }
+</script>
