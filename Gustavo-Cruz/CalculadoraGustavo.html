@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora financeira</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Calculadora Financeira</h1>
+    <label>Digite a quantidade de sacas em média que você produz anualmente:
+        <input type="number" id="numSaca">
+    </label>
+    <br>
+    <label>Informe o preço médio do café que você produz por sacas:
+        <input type="number" id="numPreco">
+    </label>
+    <br>
+    <label>Informe o seu investimento inicial na TechApulus:
+        <input type="number" id="numInvestIni">
+    </label>
+    <br>
+    <label>Informe o seu investimento anual previsto na TechApulus(desconte o valor do investimento inicial):
+        <input type="number" id="numInvestTotal">
+    </label>
+    <br>
+    <button onclick="gasto()">Calcule os gastos</button>
+    <div id="divGasto"></div>
+
+    <script>
+        function gasto() 
+            {
+            var saca = Number(numSaca.value);
+            var preco = Number(numPreco.value);
+            var investIni = Number(numInvestIni.value);
+            var investTotal = Number(numInvestTotal.value);
+
+            var sacaDesc = saca * 0.85;
+            var lucroDesc = sacaDesc * preco;
+            var lucro = saca * preco;
+            var lucroMesDesc = lucroDesc / 12;
+            var lucroMes = lucro / 12;
+            var gastoMes = lucroMes - investIni;
+            divGasto.innerHTML = `No primeiro mês os seus lucros ficam em mais ${(((gastoMes / lucroMesDesc) - 1) * 100).toFixed(2)}% ou em reais R$${(gastoMes-lucroMesDesc).toFixed(2)}.
+            
+            <br> Em 6 meses o seu lucro chega em mais 
+            ${(((((lucro / 2) - (investIni + investTotal / 2)) / (lucroDesc / 2)) - 1) * 100).toFixed(2)}% ou em reais R$${(((lucro / 2) - (investIni + investTotal / 2)) - (lucroDesc / 2))}.
+            
+            <br> Em um ano pode chegar até ${((((lucro - (investIni + investTotal)) / lucroDesc) - 1) * 100).toFixed(2)}% ou em reais R$${((lucro - (investIni + investTotal)) - lucroDesc)}.
+            
+            <br> Em 5 anos você vai ter uma porcentagem de ${((((lucro * 5 - (investIni + investTotal * 5)) / (lucroDesc * 5)) - 1) * 100).toFixed(2)}% ou em reais R$${((lucro * 5 - (investIni + investTotal * 5)) - (lucroDesc * 5))} de lucro.`
+            }
+
+    </script>
+
+</body>
+
+</html>
