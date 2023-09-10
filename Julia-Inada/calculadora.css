@@ -1,0 +1,22 @@
+body {
+    background-color: burlywood;
+}
+
+h1{
+    color: brown;
+}
+
+.pergunta1{
+    color: darkred;
+    font-weight: bold;
+}
+
+.pergunta2{
+    color: darkred;
+    font-weight: bold;
+}
+
+.pergunta3{
+    color: darkred;
+    font-weight: bold;    
+}
