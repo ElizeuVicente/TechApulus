@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> TechApulus </title>
+</head>
+<body>
+    <h1> Simulador Financeiro - TechApulus</h1>
+    <span>Digite a quantidade de sacas em média que você produz anualmente:</span>
+    <input type="number" id="input_qtdsacas"> <br> 
+    <span> Informe o preço médio do café que você produz por sacas: </span>
+    <input type="number" id="input_precocafe"> <br>
+    <span> Informe o seu investimento inicial na TechApulus:</span>
+    <input type="number" id="input_invInic"> <br>
+    <span> Informe o seu investimento anual previsto na TechApulus(desconte o valor do investimento inicial): </span>
+    <input type="number" id="input_invAnual"> <br>
+    <button onclick="calcular()">Calcular Gastos</button>
+    <div id="div_msg"></div>
+
+</body>
+</html>
+
+<script>
+    function calcular() { 
+     var saca = Number(input_qtdsacas.value)
+     var preco = Number(input_precocafe.value)
+     var investIni = Number (input_invInic.value)
+     var investAnual = Number(input_invAnual.value)
+      
+            var sacaDesc = saca * 0.85;
+            var lucroDesc = sacaDesc * preco;  
+            var lucro = saca * preco;
+            var lucroMesDesc = lucroDesc / 12;
+            var lucroMes = lucro / 12;
+            var gastoMes = lucroMes - investIni;
+
+            var primeiroMes = (((gastoMes / lucroMesDesc) - 1) * 100).toFixed(2);
+            var primeiroMesReal = (gastoMes - lucroMesDesc).toFixed(2); 
+
+            var seisMeses = (((((lucro / 2) - (investIni + investAnual / 2)) / (lucroDesc / 2)) - 1) * 100).toFixed(2);
+            var seisMesesReais = (((lucro / 2) - (investIni + investAnual / 2)) - (lucroDesc / 2)).toFixed(2);
+
+            var umAno = ((((lucro - (investIni + investAnual)) / lucroDesc) - 1) * 100).toFixed(2);
+            var umAnoReais = ((lucro - (investIni + investAnual)) - lucroDesc).toFixed(2);
+
+            var cincoAnos = ((((lucro * 5 - (investIni + investAnual * 5)) / (lucroDesc * 5)) - 1) * 100).toFixed(2);
+            var cincoAnosReais = ((lucro * 5 - (investIni + investAnual * 5)) - (lucroDesc * 5)).toFixed(2);
+
+
+     div_msg.innerHTML = `
+     No primeiro mês os seus lucros ficam em mais ${primeiroMes}% ou em reais R$${primeiroMesReal} de lucro. <br> 
+
+     Em 6 meses o seu lucro chega em mais ${seisMeses}% ou em reais R$${seisMesesReais} de lucro.  <br> 
+
+     Em um ano pode chegar até ${umAno}% ou em reais R$${umAnoReais} de lucro. <br>
+
+     Em 5 anos você vai ter uma porcentagem de ${cincoAnos}% ou em reais R$${cincoAnosReais} de lucro. 
+     
+     ` 
+
+
+    }
+</script>
