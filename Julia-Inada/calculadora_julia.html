@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira - Julia Inada</title>
+    <link rel="stylesheet" href="calculadora.css">
+</head>
+
+<body>
+
+    <h1>Calculadora Financeira da TechApulus</h1>
+    <span class="pergunta1">Quantas sacas são vendidas anualmente:</span>
+    <input id="input_qnt"><br>
+    <span class="pergunta2">Qual o valor de cada saca:</span>
+    <input id="input_valor"><br>
+    <span class="pergunta3">Digite seu investimento:</span>
+    <input id="input_invest"><br>
+    <button onclick="calcular()">Calcular investimento</button>
+    <div id="div_calculadora"></div>
+    <img src="c:\Users\julia\Downloads\image (1).png">
+
+</body>
+
+</html>
+
+<script>
+
+    function calcular() {
+
+        var qnt = Number(input_qnt.value);
+        var valor = Number(input_valor.value);
+        var invest = Number(input_invest.value);
+        var sacas = qnt * valor;
+        var perda = (sacas * 0.17) * 12;
+        var lucro_antes = (sacas * 0.83) * 12;
+        var lucro = (sacas * 0.93) * 12;
+        var lucro_agora = lucro - invest;
+        var diferenca = lucro_agora - lucro_antes;
+
+        div_calculadora.innerHTML = `
+            Considerando que você tem uma perda de 15% a 20%, então, anualmente, você perde cerca de R$${(perda).toFixed(2)}.  
+            <br>Com um lucro de R$${lucro_antes.toFixed(2)}.
+            <br>Investindo na TechApulus, seus lucros aumentarão para R$${lucro_agora.toFixed(2)}.
+            <br>Ou seja, uma diferença de R$${diferenca}.
+        `;
+
+    }
+
+</script>
