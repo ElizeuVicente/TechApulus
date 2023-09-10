@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calc_Financeira - Lucas Pagliarini</title>
+    <link rel="stylesheet" href="calc_style.css">
+
+</head>
+
+<body>
+
+    <h1>TechApulus - Simulador Financeiro</h1>
+
+    <label class="text">Quantas sacas são vendidas anualmente: 
+    <input class="input" id="input_quant"> 
+    </label> <br> <br>
+
+    <label class="text">Qual o valor de cada saca: 
+    <input class="input" id="input_valor"> 
+    </label> <br> <br>
+
+    <label class="text">Digite seu investimento: 
+    <input class="input" id="input_invest"> 
+    </label> <br> <br>
+
+    <button class="button" onclick="sim()">Simular investimento</button>
+
+    <div class="text" id="div_sim"></div>
+
+</body>
+
+</html>
+
+<script>
+
+    function sim() {
+
+        var quant = Number(input_quant.value);
+        var valor = Number(input_valor.value);
+        var invest = Number(input_invest.value);
+        var saca = quant * valor;
+        var perda = (saca * 0.17) * 12;
+        var lucro_pre = (saca * 0.83) * 12;
+        var lucro = (saca * 0.93) * 12;
+        var lucro_post = lucro - invest;
+        var dif = lucro_post - lucro_pre;
+
+        div_sim.innerHTML = `
+            <br>Considerando uma perda de 15% a 20%, você então anualmente perde, em média, cerca de R$${(perda).toFixed(2)}.  
+            <br>Com, em média, um lucro de R$${lucro_pre.toFixed(2)}.
+            <br>Investindo na TechApulus, seus lucros aumentarão para R$${lucro_post.toFixed(2)}.
+            <br>Ou seja, haverá uma diferença de R$${dif}.
+        `;
+
+    }
+
+</script>
