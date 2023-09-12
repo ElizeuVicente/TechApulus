@@ -30,7 +30,8 @@
     <div id="divGasto"></div>
 
     <script>
-            {
+
+        function gasto() {
             var saca = Number(numSaca.value);
             var preco = Number(numPreco.value);
             var investIni = Number(numInvestIni.value);
@@ -42,7 +43,7 @@
             var lucroMesDesc = lucroDesc / 12;
             var lucroMes = lucro / 12;
             var gastoMes = lucroMes - investIni;
-            divGasto.innerHTML = `No primeiro mês os seus lucros ficam em mais ${(((gastoMes / lucroMesDesc) - 1) * 100).toFixed(2)}% ou em reais R$${(gastoMes-lucroMesDesc).toFixed(2)}.
+            divGasto.innerHTML = `No primeiro mês os seus lucros ficam em mais ${(((gastoMes / lucroMesDesc) - 1) * 100).toFixed(2)}% ou em reais R$${(gastoMes - lucroMesDesc).toFixed(2)}.
             
             <br> Em 6 meses o seu lucro chega em mais 
             ${(((((lucro / 2) - (investIni + investTotal / 2)) / (lucroDesc / 2)) - 1) * 100).toFixed(2)}% ou em reais R$${(((lucro / 2) - (investIni + investTotal / 2)) - (lucroDesc / 2))}.
@@ -50,8 +51,7 @@
             <br> Em um ano pode chegar até ${((((lucro - (investIni + investTotal)) / lucroDesc) - 1) * 100).toFixed(2)}% ou em reais R$${((lucro - (investIni + investTotal)) - lucroDesc)}.
             
             <br> Em 5 anos você vai ter uma porcentagem de ${((((lucro * 5 - (investIni + investTotal * 5)) / (lucroDesc * 5)) - 1) * 100).toFixed(2)}% ou em reais R$${((lucro * 5 - (investIni + investTotal * 5)) - (lucroDesc * 5))} de lucro.`
-            }
-
+        }
 
     </script>
 
