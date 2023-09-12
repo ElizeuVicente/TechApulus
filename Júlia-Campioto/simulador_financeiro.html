@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechApulus - Simulador Financeiro</title>
+    <h1 style="color: brown;">Simulador Financeiro</h1>
+</head>
+
+<body style="background-color: burlywood;">
+    Quantas sacas de café são vendidas mensalmente?
+    <input type="number" id="input_mensal">
+    <br>
+    <br>
+    Por quanto é vendido cada saca de café?
+    <input type="number" id="input_preco">
+    <br>
+    <br>
+    Quanto você pretende investir na TechApulus em um mês? <input type="number" id="input_investir">
+    <button onclick="calcular()">Calcular desperdício</button>
+    <div id="div_desperdicio"></div>
+</body>
+
+</html>
+<script>
+    function calcular() {
+        var mensal = Number(input_mensal.value);
+        var preco = Number(input_preco.value);
+        var investir = Number(input_investir.value);
+        var desperdicar = preco * 0.85;
+        var vendas_mes = desperdicar * mensal;
+        var techapulus_mensal = preco * mensal;
+        var lucro = techapulus_mensal - investir;
+        var vantagem = lucro - vendas_mes; 
+
+
+        div_desperdicio.innerHTML = `<br> Levando em consideração que você possui uma perda de 15%, você lucra R$${vendas_mes} mensalmente e com a TechApulus, você vai lucrar R$${lucro} mensalmente. <br> Ou seja, com a nossa empresa você terá uma vantagem de R$${vantagem}.`;
+    }
+</script>
